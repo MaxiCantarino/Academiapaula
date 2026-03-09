@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula Virtual | Paula Cantarino</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <style>
+        /* Specific Styles for the Classroom View to ensure focus */
+        body, html { margin: 0; padding: 0; height: 100%; background-color: #FDFCFB; }
+        .classroom-layout { display: flex; height: 100vh; overflow: hidden; }
+        
+        /* Sidebar: Syllabus */
+        .syllabus-sidebar { width: 350px; background-color: white; border-right: 1px solid #EAEAEA; display: flex; flex-direction: column; flex-shrink: 0; }
+        .syllabus-header { padding: 1.5rem; border-bottom: 1px solid #EAEAEA; }
+        .syllabus-header h2 { font-family: var(--font-body); font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .syllabus-header .back-btn { font-size: 0.8rem; color: var(--color-gray); text-decoration: none; display: flex; align-items: center; gap: 0.3rem; transition: color 0.3s; }
+        .syllabus-header .back-btn:hover { color: var(--color-black); }
+        
+        .syllabus-content { flex-grow: 1; overflow-y: auto; }
+        .module { border-bottom: 1px solid #F0F0F0; }
+        .module-header { padding: 1rem 1.5rem; background-color: #FAFAFA; font-weight: 600; font-size: 0.9rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .module-list { list-style: none; padding: 0; margin: 0; display: block; }
+        .module-list.collapsed { display: none; }
+        .lesson-item { padding: 0.8rem 1.5rem 0.8rem 2.5rem; font-size: 0.85rem; color: var(--color-dark-gray); cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: background 0.3s; }
+        .lesson-item:hover { background-color: #F9F7F5; }
+        .lesson-item.active { background-color: #F9F7F5; font-weight: 600; color: var(--color-black); border-left: 3px solid #a48650; }
+        .lesson-item i { color: var(--color-gray); font-size: 1.1rem; }
+        .lesson-item.completed i { color: #34C759; }
+        
+        /* Main Area: Video Player */
+        .classroom-main { flex-grow: 1; display: flex; flex-direction: column; overflow-y: auto; }
+        .video-container { width: 100%; background-color: black; position: relative; padding-top: 56.25%; /* 16:9 Aspect Ratio */ }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        
+        /* Live Class Container (Alternative to video) */
+        .live-class-container { display: none; width: 100%; background-color: #1A1A1A; color: white; padding: 4rem 2rem; text-align: center; }
+        .live-class-container.active { display: block; }
+        .live-class-container h1 { font-family: var(--font-heading); margin-bottom: 1rem; }
+        .live-class-container p { color: #BBBBBB; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+        
+        /* Lesson Details below Video */
+        .lesson-details { padding: 3rem; max-width: 900px; margin: 0 auto; width: 100%; }
+        .lesson-title { font-size: 2rem; margin-bottom: 1rem; }
+        .lesson-desc { color: var(--color-dark-gray); line-height: 1.6; margin-bottom: 2rem; }
+        
+        .resources-box { background-color: white; border: 1px solid #EAEAEA; border-radius: 8px; padding: 1.5rem; }
+        .resources-box h4 { font-size: 1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .resource-link { display: flex; align-items: center; gap: 0.5rem; color: var(--color-black); text-decoration: none; padding: 0.5rem 0; border-bottom: 1px solid #F0F0F0; font-size: 0.9rem; }
+        .resource-link:last-child { border-bottom: none; }
+        .resource-link:hover { color: #a48650; }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .classroom-layout { flex-direction: column; }
+            .syllabus-sidebar { width: 100%; height: 40vh; order: 2; border-right: none; border-top: 1px solid #EAEAEA; }
+            .classroom-main { height: 60vh; order: 1; }
+            .lesson-details { padding: 1.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="classroom-layout">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="syllabus-sidebar">
+            <div class="syllabus-header">
+                <a href="alumnos.html" class="back-btn"><i class='bx bx-chevron-left'></i> Volver al Panel</a>
+                <h2 style="margin-top: 1rem;">Diseño de Cejas y Arquitectura</h2>
+                <div class="progress-bar" style="height: 4px; margin-top: 0.5rem;">
+                    <div class="progress-fill" style="width: 45%;"></div>
+                </div>
+            </div>
+            
+            <div class="syllabus-content">
+                
+                <!-- Module 1 -->
+                <div class="module">
+                    <div class="module-header" onclick="toggleModule(this)">
+                        <span>Módulo 1: Fundamentos</span>
+                        <i class='bx bx-chevron-up'></i>
+                    </div>
+                    <ul class="module-list">
+                        <li class="lesson-item completed" onclick="loadVideo('dQw4w9WgXcQ', 'Bienvenida y Materiales', 'Conoce las herramientas que usaremos durante el curso.')">
+                            <i class='bx bxs-check-circle'></i>
+                            <span>1. Bienvenida y Materiales</span>
+                        </li>
+                        <li class="lesson-item active" onclick="loadVideo('tgbNymZ7vqY', 'Morfología del Rostro', 'Aprende a analizar los diferentes tipos de rostros para un diseño perfecto.')">
+                            <i class='bx bx-play-circle'></i>
+                            <span>2. Morfología del Rostro</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="module">
+                    <div class="module-header" onclick="toggleModule(this)">
+                        <span>Módulo 2: Arquitectura y Diseño</span>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                    <ul class="module-list collapsed">
+                        <li class="lesson-item" onclick="loadVideo('anotherId', 'Uso del Hilo y Calibrador', 'Técnicas de medición precisas.')">
+                            <i class='bx bx-lock-alt'></i>
+                            <span>1. Uso del Hilo y Calibrador</span>
+                        </li>
+                        <li class="lesson-item" onclick="loadLiveClass('Práctica en Vivo con Modelo', 'Jueves 15, 18:30 hrs', 'https://zoom.us/j/123456789')">
+                            <i class='bx bx-video-recording'></i>
+                            <span>2. Clase en Vivo: Demostración</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </aside>
+
+        <!-- Main Video Area -->
+        <main class="classroom-main">
+            
+            <!-- YouTube Video Container -->
+            <div class="video-container" id="video-player-container">
+                <!-- We use YouTube No-Cookie for better privacy, replace ID dynamically -->
+                <iframe id="youtube-player" src="https://www.youtube-nocookie.com/embed/tgbNymZ7vqY?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <!-- Live Class Box (Hidden by default, shown via JS) -->
+            <div class="live-class-container" id="live-class-container">
+                <i class='bx bx-broadcast' style="font-size: 4rem; color: #a48650; margin-bottom: 1rem;"></i>
+                <h1 id="live-title">Clase en Vivo programada</h1>
+                <p id="live-time">Cargando fecha...</p>
+                <a href="#" id="live-link" target="_blank" class="btn btn-solid-mint" style="padding: 1rem 3rem; font-size: 1.1rem;">Unirse a Zoom</a>
+            </div>
+
+            <!-- Lesson Content -->
+            <div class="lesson-details">
+                <h1 class="lesson-title" id="lesson-title-display">Morfología del Rostro</h1>
+                <p class="lesson-desc" id="lesson-desc-display">Aprende a analizar los diferentes tipos de rostros para un diseño de cejas simétrico y perfecto.</p>
+                
+                <div class="resources-box" id="resources-box">
+                    <h4><i class='bx bx-file'></i> Recursos Descargables</h4>
+                    <a href="#" class="resource-link"><i class='bx bxs-file-pdf'></i> Plantilla_Morfologia.pdf</a>
+                    <a href="#" class="resource-link"><i class='bx bxs-file-pdf'></i> Guia_Visagismo.pdf</a>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // Simple JS for toggling modules
+        function toggleModule(header) {
+            const list = header.nextElementSibling;
+            const icon = header.querySelector('i');
+            list.classList.toggle('collapsed');
+            
+            if(list.classList.contains('collapsed')) {
+                icon.classList.replace('bx-chevron-up', 'bx-chevron-down');
+            } else {
+                icon.classList.replace('bx-chevron-down', 'bx-chevron-up');
+            }
+        }
+
+        // Feature to dynamically change video
+        function loadVideo(youtubeId, title, desc) {
+            // Update UI Active State
+            document.querySelectorAll('.lesson-item').forEach(item => item.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            // Switch layout to Video
+            document.getElementById('video-player-container').style.display = 'block';
+            document.getElementById('live-class-container').style.display = 'none';
+
+            // Update iframe
+            const iframe = document.getElementById('youtube-player');
+            iframe.src = `https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0&modestbranding=1&autoplay=1`;
+
+            // Update Texts
+            document.getElementById('lesson-title-display').textContent = title;
+            document.getElementById('lesson-desc-display').textContent = desc;
+            document.getElementById('resources-box').style.display = 'block';
+        }
+
+        // Feature to load Live Class info
+        function loadLiveClass(title, time, link) {
+             // Update UI Active State
+             document.querySelectorAll('.lesson-item').forEach(item => item.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            // Switch layout to Live Class
+            document.getElementById('video-player-container').style.display = 'none';
+            document.getElementById('live-class-container').style.display = 'block';
+
+            // Update Info
+            document.getElementById('live-title').textContent = title;
+            document.getElementById('live-time').innerHTML = `<i class='bx bx-calendar'></i> ${time}`;
+            document.getElementById('live-link').href = link;
+            
+            // Update Content Texts
+            document.getElementById('lesson-title-display').textContent = title;
+            document.getElementById('lesson-desc-display').textContent = "Prepara tus herramientas y asegúrate de tener buena conexión a internet para esta clase en vivo.";
+            document.getElementById('resources-box').style.display = 'none';
+        }
+    </script>
+
+    <!-- Custom Auth JS -->
+    <script src="app.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+             // Verifica la sesión y redirige al login si no está autenticado
+             await checkAuth();
+        });
+    </script>
+</body>
+</html>

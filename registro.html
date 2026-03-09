@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paula Cantarino | El arte de la micropigmentación elevado al máximo nivel</title>
+    <meta name="description" content="Paula Cantarino es la academia líder en formación profesional de Microblading y Estética High-End.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Boxicons for elegant icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="assets/images/logo-paula.png" alt="Paula Cantarino" class="nav-logo-img"></a>
+            <nav class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="cursos.html">Cursos</a>
+                <a href="sobre-paula.html">Sobre Paula</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline" style="padding: 0.6rem 1.5rem; font-size: 0.75rem;">Login</a>
+                <a href="https://app3.doyturnos.com/paulacantarino/" class="btn btn-solid" style="padding: 0.6rem 1.5rem; font-size: 0.75rem;" target="_blank" rel="noopener noreferrer">Sacar Turno</a>
+                <button class="cart-btn" aria-label="Carrito de compras"><i class='bx bx-shopping-bag'></i></button>
+            </div>
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-toggle" aria-label="Abrir menú"><i class='bx bx-menu'></i></button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Auth Section -->
+        <section class="auth-section" style="min-height: 80vh; display: flex; align-items: center; justify-content: center; background: var(--color-offwhite); padding-top: 100px;">
+            <div class="container" style="max-width: 500px; width: 100%;">
+                <div class="auth-card" style="background: var(--color-white); padding: 3rem; border: 1px solid var(--color-light-gray); text-align: center; border-radius: var(--radius-minimal); box-shadow: var(--shadow-soft);">
+                    <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem; letter-spacing: 2px;">NUEVA CUENTA</h1>
+                    <p style="color: var(--color-gray); margin-bottom: 2.5rem; font-size: 0.9rem; text-transform: uppercase;">Únete a la Academia</p>
+                    
+                    <form id="register-form" action="#" method="POST" style="text-align: left;">
+                        <div id="reg-message" style="margin-bottom: 1rem; font-size: 0.85rem; text-align: center;"></div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label for="reg-name" style="display: block; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.85rem; text-transform: uppercase;">Nombre Completo</label>
+                            <input type="text" id="reg-name" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--color-light-gray); font-family: var(--font-body); outline: none;">
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label for="reg-email" style="display: block; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.85rem; text-transform: uppercase;">Correo Electrónico</label>
+                            <input type="email" id="reg-email" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--color-light-gray); font-family: var(--font-body); outline: none;">
+                        </div>
+                        <div style="margin-bottom: 2rem;">
+                            <label for="reg-password" style="display: block; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.85rem; text-transform: uppercase;">Contraseña</label>
+                            <div style="position: relative; display: flex; align-items: center;">
+                                <input type="password" id="reg-password" name="password" required 
+                                       minlength="8" 
+                                       pattern="(?=.*\d)(?=.*[A-Z]).{8,}" 
+                                       style="width: 100%; padding: 0.8rem; padding-right: 2.5rem; border: 1px solid var(--color-light-gray); font-family: var(--font-body); outline: none;"
+                                       onkeyup="checkPasswordStrength(this.value)">
+                                <i class='bx bx-hide password-toggle' style="position: absolute; right: 0.8rem; font-size: 1.2rem; color: var(--color-gray); cursor: pointer;" onclick="togglePasswordVisibility('reg-password', this)"></i>
+                            </div>
+                            
+                            <!-- Password Checklist -->
+                            <div id="password-checklist" style="margin-top: 0.8rem; background-color: #FAFAFA; padding: 1rem; border-radius: 4px; border: 1px solid #EAEAEA;">
+                                <p style="font-size: 0.8rem; margin-bottom: 0.5rem; font-weight: 600;">La contraseña debe contener:</p>
+                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.75rem; color: var(--color-gray);">
+                                    <li id="req-length" style="margin-bottom: 0.3rem;"><i class='bx bx-x-circle' style="color: #FF3B30; margin-right: 4px; vertical-align: middle;"></i> Mínimo 8 caracteres</li>
+                                    <li id="req-upper" style="margin-bottom: 0.3rem;"><i class='bx bx-x-circle' style="color: #FF3B30; margin-right: 4px; vertical-align: middle;"></i> Al menos 1 mayúscula</li>
+                                    <li id="req-number"><i class='bx bx-x-circle' style="color: #FF3B30; margin-right: 4px; vertical-align: middle;"></i> Al menos 1 número</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-solid" style="width: 100%; margin-bottom: 1.5rem;">Crear Cuenta</button>
+                    </form>
+
+                    <div style="border-top: 1px solid var(--color-light-gray); padding-top: 1.5rem; font-size: 0.9rem;">
+                        <p>¿Ya tienes una cuenta? <a href="login.html" style="font-weight: 600;">Inicia Sesión</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <h2>PAULA CANTARINO</h2>
+                <p>Academia de Belleza</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Redes Sociales</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Instagram" class="social-ig"><i class='bx bxl-instagram'></i></a>
+                        <a href="#" aria-label="Facebook" class="social-fb"><i class='bx bxl-facebook-circle'></i></a>
+                        <a href="#" aria-label="TikTok" class="social-tt"><i class='bx bxl-tiktok'></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <div class="footer-legal-links">
+                <a href="politica-privacidad.html">Política de Privacidad</a>
+                <a href="terminos-condiciones.html">Términos y Condiciones</a>
+            </div>
+            <p>&copy; 2026 Academia Paula Cantarino. Todos los derechos reservados. Desarrollada por Kairos.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/5493512560617" class="whatsapp-float" aria-label="Contactar por WhatsApp" target="_blank" rel="noopener noreferrer">
+        <i class='bx bxl-whatsapp'></i>
+    </a>
+
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+    <script src="auth.js?v=2"></script>
+</body>
+</html>
+
+

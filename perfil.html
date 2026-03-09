@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal del Alumno | Paula Cantarino</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css?v=3">
+    
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body class="student-portal-body">
+
+    <!-- Student Setup Navigation -->
+    <header class="navbar portal-navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="assets/images/logo-paula.png" alt="Paula Cantarino" class="nav-logo-img"></a>
+            
+            <div class="portal-user-actions">
+                <div class="user-greeting">
+                    <span>Hola, <strong id="user-display-name">Alumno</strong></span>
+                    <div class="user-avatar">A</div>
+                </div>
+                <button id="logout-btn" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.75rem;">Cerrar Sesión</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="portal-main">
+        <div class="container portal-container">
+            
+            <!-- Dashboard Sidebar -->
+            <aside class="portal-sidebar">
+                <nav class="portal-menu">
+                    <a href="alumnos.html"><i class='bx bx-book-open'></i> Mis Cursos</a>
+                    <a href="certificados.html"><i class='bx bx-certification'></i> Mis Certificados</a>
+                    <a href="perfil.html" class="active"><i class='bx bx-user-circle'></i> Mi Perfil</a>
+                    <a href="https://wa.me/5493512607315" target="_blank" rel="noopener noreferrer">
+                        <i class='bx bx-support'></i> 
+                        <div style="display: flex; flex-direction: column;">
+                            <span>Soporte</span>
+                            <span style="font-size: 0.7rem; color: #a48650; margin-top: -3px;">Desarrollado por Kairos</span>
+                        </div>
+                    </a>
+                    <a href="#" class="logout-action" style="margin-top: 1.5rem; color: #E23636;"><i class='bx bx-log-out'></i> Cerrar Sesión</a>
+                </nav>
+            </aside>
+
+            <!-- Dashboard Content -->
+            <section class="portal-content">
+                <div class="portal-header">
+                    <h2>Mi Perfil</h2>
+                    <p>Administra tu información personal y de acceso.</p>
+                </div>
+
+                <div class="profile-container" style="background-color: white; border: 1px solid rgba(0,0,0,0.05); border-radius: var(--radius-minimal); padding: 2.5rem;">
+                    
+                    <div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid #EAEAEA;">
+                        <div class="user-avatar" style="width: 80px; height: 80px; font-size: 2rem;" id="profile-avatar-large">A</div>
+                        <div>
+                            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 0.3rem;" id="profile-display-name">Cargando...</h3>
+                            <p style="color: var(--color-gray); font-size: 0.95rem;" id="profile-display-email">cargando@correo.com</p>
+                        </div>
+                    </div>
+
+                    <form id="profile-form" class="auth-form" style="max-width: 600px;">
+                        
+                        <div class="form-group">
+                            <label for="profile-name">Nombre Completo</label>
+                            <div class="input-wrapper">
+                                <i class='bx bx-user'></i>
+                                <input type="text" id="profile-name" placeholder="Tu nombre" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 1.5rem;">
+                            <label for="profile-email">Correo Electrónico (No modificable)</label>
+                            <div class="input-wrapper">
+                                <i class='bx bx-envelope'></i>
+                                <input type="email" id="profile-email" disabled style="background-color: #F9F9F9; color: #888;">
+                            </div>
+                            <p style="font-size: 0.75rem; color: var(--color-gray); margin-top: 0.4rem;">Si necesitas cambiar tu correo de acceso, por favor contáctanos al soporte.</p>
+                        </div>
+
+                        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #EAEAEA;">
+                            <h4 style="font-family: var(--font-heading); margin-bottom: 1.5rem; font-size: 1.2rem;">Actualizar Contraseña</h4>
+                            
+                            <div class="form-group">
+                                <label for="profile-new-password">Nueva Contraseña</label>
+                                <div class="input-wrapper">
+                                    <i class='bx bx-lock-alt'></i>
+                                    <input type="password" id="profile-new-password" placeholder="Ingresa nueva contraseña (si deseas cambiarla)" pattern="(?=.*\d)(?=.*[A-Z]).{8,}" title="Debe contener al menos 8 caracteres, un número y una mayúscula." oninput="checkPasswordStrength(this.value)">
+                                    <i class='bx bx-hide toggle-password' onclick="togglePasswordVisibility('profile-new-password', this)"></i>
+                                </div>
+                            </div>
+                            <!-- Password Checklist -->
+                            <div class="password-checklist" style="margin-top: 0.5rem; font-size: 0.8rem;">
+                                <div id="req-length" style="color: var(--color-gray);"><i class='bx bx-x-circle' style="color: #FF3B30; margin-right: 4px; vertical-align: middle;"></i> Mínimo 8 caracteres</div>
+                                <div id="req-upper" style="color: var(--color-gray);"><i class='bx bx-x-circle' style="color: #FF3B30; margin-right: 4px; vertical-align: middle;"></i> Al menos 1 mayúscula</div>
+                                <div id="req-number" style="color: var(--color-gray);"><i class='bx bx-x-circle' style="color: #FF3B30; margin-right: 4px; vertical-align: middle;"></i> Al menos 1 número</div>
+                            </div>
+                        </div>
+
+                        <p id="profile-message" class="auth-message" style="margin-top: 1.5rem;"></p>
+
+                        <button type="submit" class="btn btn-solid w-100" style="margin-top: 2rem;" id="save-profile-btn">Guardar Cambios</button>
+
+                    </form>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Verifica la sesión y redirige al login si no está autenticado
+            const session = await checkAuth();
+            if (session) {
+                const userName = session.user.user_metadata?.full_name || session.user.email;
+                const displayName = document.getElementById('user-display-name');
+                if(displayName) displayName.innerText = userName.split('@')[0];
+            }
+        });
+    </script>
+</body>
+</html>

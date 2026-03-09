@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal del Alumno | Paula Cantarino</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css?v=3">
+    
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body class="student-portal-body">
+
+    <!-- Student Setup Navigation -->
+    <header class="navbar portal-navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="assets/images/logo-paula.png" alt="Paula Cantarino" class="nav-logo-img"></a>
+            
+            <div class="portal-user-actions">
+                <div class="user-greeting">
+                    <span>Hola, <strong id="user-display-name">Alumno</strong></span>
+                    <div class="user-avatar">A</div>
+                </div>
+                <button id="logout-btn" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.75rem;">Cerrar Sesión</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="portal-main">
+        <div class="container portal-container">
+            
+            <!-- Dashboard Sidebar -->
+            <aside class="portal-sidebar">
+                <nav class="portal-menu">
+                    <a href="alumnos.html" class="active"><i class='bx bx-book-open'></i> Mis Cursos</a>
+                    <a href="certificados.html"><i class='bx bx-certification'></i> Mis Certificados</a>
+                    <a href="#"><i class='bx bx-user-circle'></i> Mi Perfil</a>
+                    <a href="https://wa.me/5493512607315" target="_blank" rel="noopener noreferrer">
+                        <i class='bx bx-support'></i> 
+                        <div style="display: flex; flex-direction: column;">
+                            <span>Soporte</span>
+                            <span style="font-size: 0.7rem; color: #a48650; margin-top: -3px;">Desarrollado por Kairos</span>
+                        </div>
+                    </a>
+                    <a href="#" class="logout-action" style="margin-top: 1.5rem; color: #E23636;"><i class='bx bx-log-out'></i> Cerrar Sesión</a>
+                </nav>
+            </aside>
+
+            <!-- Dashboard Content -->
+            <section class="portal-content">
+                <div class="portal-header">
+                    <h2>Mis Cursos Activos</h2>
+                    <p>Continuá tu formación donde la dejaste.</p>
+                </div>
+
+                <div class="enrolled-courses-grid">
+                    
+                    <!-- Enrolled Course Card 1 -->
+                    <article class="enrolled-card">
+                        <div class="enrolled-img-box">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Diseño de Cejas" loading="lazy">
+                        </div>
+                        <div class="enrolled-info">
+                            <h3>Diseño de Cejas y Arquitectura</h3>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 45%;"></div>
+                                </div>
+                                <span class="progress-text">45% Completado</span>
+                            </div>
+                            <div class="course-actions">
+                                <a href="curso-aula.html" class="btn btn-solid">Ir al Aula</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Enrolled Course Card 2 (Live Cohort Example) -->
+                    <article class="enrolled-card">
+                        <div class="enrolled-img-box">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Microblading" loading="lazy">
+                            <div class="live-badge">En Vivo</div>
+                        </div>
+                        <div class="enrolled-info">
+                            <h3>Máster en Microblading (Cohorte Mayo)</h3>
+                            <p class="next-class-info"><i class='bx bx-calendar'></i> Próxima clase: Jueves, 18:30 hrs</p>
+                            <div class="course-actions">
+                                <a href="curso-aula.html" class="btn btn-outline">Ir al Aula</a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Verifica la sesión y redirige al login si no está autenticado
+            const session = await checkAuth();
+            if (session) {
+                const userName = session.user.user_metadata?.full_name || session.user.email;
+                const displayName = document.getElementById('user-display-name');
+                if(displayName) displayName.innerText = userName.split('@')[0];
+            }
+        });
+    </script>
+</body>
+</html>

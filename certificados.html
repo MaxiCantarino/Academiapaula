@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal del Alumno | Paula Cantarino</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css?v=3">
+    
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- jsPDF for Certificate Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body class="student-portal-body">
+
+    <!-- Student Setup Navigation -->
+    <header class="navbar portal-navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="assets/images/logo-paula.png" alt="Paula Cantarino" class="nav-logo-img"></a>
+            
+            <div class="portal-user-actions">
+                <div class="user-greeting">
+                    <span>Hola, <strong id="user-display-name">Alumno</strong></span>
+                    <div class="user-avatar">A</div>
+                </div>
+                <button id="logout-btn" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.75rem;">Cerrar Sesión</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="portal-main">
+        <div class="container portal-container">
+            
+            <!-- Dashboard Sidebar -->
+            <aside class="portal-sidebar">
+                <nav class="portal-menu">
+                    <a href="alumnos.html"><i class='bx bx-book-open'></i> Mis Cursos</a>
+                    <a href="certificados.html" class="active"><i class='bx bx-certification'></i> Mis Certificados</a>
+                    <a href="perfil.html"><i class='bx bx-user-circle'></i> Mi Perfil</a>
+                    <a href="https://wa.me/5493512607315" target="_blank" rel="noopener noreferrer">
+                        <i class='bx bx-support'></i> 
+                        <div style="display: flex; flex-direction: column;">
+                            <span>Soporte</span>
+                            <span style="font-size: 0.7rem; color: #a48650; margin-top: -3px;">Desarrollado por Kairos</span>
+                        </div>
+                    </a>
+                    <a href="#" class="logout-action" style="margin-top: 1.5rem; color: #E23636;"><i class='bx bx-log-out'></i> Cerrar Sesión</a>
+                </nav>
+            </aside>
+
+            <!-- Dashboard Content -->
+            <section class="portal-content">
+                <div class="portal-header">
+                    <h2>Mis Certificados</h2>
+                    <p>Descarga tus avales y certificaciones de los cursos finalizados.</p>
+                </div>
+
+                <div class="enrolled-courses-grid">
+                    
+                    <!-- Certificado Card 1 -->
+                    <article class="enrolled-card">
+                        <div class="enrolled-img-box" style="aspect-ratio: auto; height: 180px; background-color: #F8F5F2; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #EAEAEA;">
+                            <i class='bx bxs-certification' style="font-size: 5rem; color: #a48650;"></i>
+                        </div>
+                        <div class="enrolled-info">
+                            <h3 style="font-size: 1.2rem;">Diseño de Cejas y Arquitectura</h3>
+                            <p style="font-size: 0.85rem; color: var(--color-gray); margin-bottom: 2rem;">Adquirido en Marzo 2026</p>
+                            
+                            <div class="course-actions">
+                                <button class="btn btn-solid w-100 generate-cert-btn" data-course="Diseño de Cejas y Arquitectura" data-date="28 de Marzo, 2026" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                                    <i class='bx bxs-download'></i> Descargar PDF
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Empty state para cuando no hay -> podemos ocultarlo luego con JS -->
+                    <article class="enrolled-card" id="no-certs-state" style="display: none; grid-column: 1 / -1; align-items: center; padding: 4rem 2rem; text-align: center; border: 1px dashed #CCC; background: transparent; box-shadow: none;">
+                        <i class='bx bx-folder-open' style="font-size: 3rem; color: #CCC; margin-bottom: 1rem;"></i>
+                        <h3 style="color: var(--color-gray);">Aún no tienes certificados disponibles</h3>
+                        <p style="color: #999; font-size: 0.9rem;">Finaliza tus cursos al 100% para poder descargar tus diplomas.</p>
+                    </article>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Verifica la sesión y redirige al login si no está autenticado
+            const session = await checkAuth();
+            if (session) {
+                const userName = session.user.user_metadata?.full_name || session.user.email;
+                const displayName = document.getElementById('user-display-name');
+                if(displayName) displayName.innerText = userName.split('@')[0];
+                
+                // --- Logica de Generación de Certificados PDF ---
+                const certButtons = document.querySelectorAll('.generate-cert-btn');
+                certButtons.forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        const courseName = this.getAttribute('data-course');
+                        const completionDate = this.getAttribute('data-date') || new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+                        const studentName = userName.split('@')[0]; // Usa el full_name o la primer parte del correo
+                        
+                        // Inicializar jsPDF (formato horizontal A4)
+                        const { jsPDF } = window.jspdf;
+                        const doc = new jsPDF({
+                            orientation: "landscape",
+                            unit: "mm",
+                            format: "a4"
+                        });
+                        
+                        // Agregar borde elegante
+                        doc.setDrawColor(164, 134, 80); // rgb(#a48650)
+                        doc.setLineWidth(3);
+                        doc.rect(10, 10, 277, 190);
+                        
+                        doc.setDrawColor(0, 0, 0); 
+                        doc.setLineWidth(0.5);
+                        doc.rect(15, 15, 267, 180);
+
+                        // Título de Lujo
+                        doc.setFont("helvetica", "bold");
+                        doc.setFontSize(40);
+                        doc.setTextColor(30, 30, 30);
+                        doc.text("CERTIFICADO DE FINALIZACIÓN", 148, 50, null, null, "center");
+
+                        // Subtítulo
+                        doc.setFont("helvetica", "normal");
+                        doc.setFontSize(16);
+                        doc.setTextColor(100, 100, 100);
+                        doc.text("Este documento certifica con orgullo que", 148, 75, null, null, "center");
+
+                        // Nombre del Alumno
+                        doc.setFont("helvetica", "bolditalic");
+                        doc.setFontSize(35);
+                        doc.setTextColor(164, 134, 80); // Dorado
+                        doc.text(studentName.toUpperCase(), 148, 100, null, null, "center");
+
+                        // Separador
+                        doc.setDrawColor(164, 134, 80);
+                        doc.setLineWidth(1);
+                        doc.line(100, 110, 196, 110);
+
+                        // Texto del Curso
+                        doc.setFont("helvetica", "normal");
+                        doc.setFontSize(16);
+                        doc.setTextColor(100, 100, 100);
+                        doc.text("Ha superado satisfactoriamente los requisitos del curso:", 148, 125, null, null, "center");
+
+                        // Nombre del Curso
+                        doc.setFont("helvetica", "bold");
+                        doc.setFontSize(24);
+                        doc.setTextColor(30, 30, 30);
+                        doc.text(courseName.toUpperCase(), 148, 140, null, null, "center");
+
+                        // Firma y Fecha
+                        const today = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+                        
+                        doc.setFont("helvetica", "normal");
+                        doc.setFontSize(12);
+                        doc.setTextColor(0, 0, 0);
+                        
+                        // Línea Firma Directora
+                        doc.line(50, 175, 110, 175);
+                        doc.text("Paula Cantarino", 80, 182, null, null, "center");
+                        doc.setFontSize(10);
+                        doc.setTextColor(100, 100, 100);
+                        doc.text("Directora y Fundadora", 80, 187, null, null, "center");
+
+                        // Fecha de finalización
+                        doc.setFont("helvetica", "normal");
+                        doc.setFontSize(12);
+                        doc.setTextColor(0, 0, 0);
+                        doc.text("Aprobado el: " + completionDate, 215, 182, null, null, "center");
+
+                        // Guardar PDF
+                        doc.save(`Certificado_${courseName.replace(/\s+/g, '_')}_${studentName.replace(/\s+/g, '')}.pdf`);
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

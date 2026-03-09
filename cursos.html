@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paula Cantarino | El arte de la micropigmentación elevado al máximo nivel</title>
+    <meta name="description" content="Paula Cantarino es la academia líder en formación profesional de Microblading y Estética High-End.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Boxicons for elegant icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="assets/images/logo-paula.png" alt="Paula Cantarino" class="nav-logo-img"></a>
+            <nav class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="cursos.html">Cursos</a>
+                <a href="sobre-paula.html">Sobre Paula</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+            <div class="nav-actions">
+                <!-- Dynamically updated by auth.js -->
+                <div id="auth-buttons" style="display: inline-block;">
+                    <a href="login.html" class="btn btn-outline" style="padding: 0.6rem 1.5rem; font-size: 0.75rem;">Login</a>
+                </div>
+                <a href="https://app3.doyturnos.com/paulacantarino/" class="btn btn-solid" style="padding: 0.6rem 1.5rem; font-size: 0.75rem;" target="_blank" rel="noopener noreferrer">Sacar Turno</a>
+                <button class="cart-btn" aria-label="Carrito de compras"><i class='bx bx-shopping-bag'></i></button>
+            </div>
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-toggle" aria-label="Abrir menú"><i class='bx bx-menu'></i></button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header" style="padding: 150px 0 50px; text-align: center; background: var(--color-offwhite);">
+            <div class="container reveal">
+                <h1 style="font-size: 4rem;">OFERTA ACADÉMICA</h1>
+                <p style="color: var(--color-gray); margin-top: 1rem; text-transform: uppercase;">Formación de élite en estética facial</p>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section class="courses section-spacing" id="cursos">
+            <div class="container">
+                <div class="courses-grid" style="margin-top: 0;">
+                    
+                    <!-- Course 1 -->
+                    <article class="course-card reveal">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Diseño de Cejas" class="course-img" loading="lazy">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Diseño de Cejas</h3>
+                            <p class="course-price">$150 USD</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            
+                            <!-- Detailed Info (Hidden by default) -->
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bxs-star'></i> Inscripción Abierta</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">$150 USD</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Inscribirme</a>
+                                    </div>
+                                </div>
+
+                                <div class="expanded-content-grid">
+                                    <!-- Left: Tabs -->
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'cejas-general')">Información General</button>
+                                                <button class="mini-tab-btn" onclick="openTab(event, 'cejas-dirigido')">Dirigido A</button>
+                                                <button class="mini-tab-btn" onclick="openTab(event, 'cejas-temario')">Temario</button>
+                                            </div>
+                                            
+                                            <div id="cejas-general" class="mini-tab-content active">
+                                                <p>Dominá la técnica de arquitectura y diseño de cejas con hilo, calibrador y compás. Ideal para lograr una simetría perfecta adaptada a cada tipo de rostro.</p>
+                                            </div>
+
+                                            <div id="cejas-dirigido" class="mini-tab-content">
+                                                <p>Diseñado tanto para principiantes como para profesionales de la belleza que desean incorporar nuevas técnicas de precisión a su menú de servicios.</p>
+                                            </div>
+
+                                            <div id="cejas-temario" class="mini-tab-content">
+                                                <ul>
+                                                    <li>Morfología del rostro y visagismo avanzado.</li>
+                                                    <li>Uso de herramientas de medición.</li>
+                                                    <li>Técnicas de depilación (pinza y cera).</li>
+                                                    <li>Maquillaje semipermanente base.</li>
+                                                    <li>Bioseguridad e higiene.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right: Form -->
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo por e-mail.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Solicitar Info</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Course 2 -->
+                    <article class="course-card reveal delay-1">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Labios" class="course-img" loading="lazy">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Masterclass Labios</h3>
+                            <p class="course-price">$350 USD</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            
+                            <!-- Detailed Info (Hidden by default) -->
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bxs-star'></i> Inscripción Abierta</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">$350 USD</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Inscribirme</a>
+                                    </div>
+                                </div>
+
+                                <div class="expanded-content-grid">
+                                    <!-- Left: Tabs -->
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'labios-general')">Información General</button>
+                                                <button class="mini-tab-btn" onclick="openTab(event, 'labios-dirigido')">Dirigido A</button>
+                                                <button class="mini-tab-btn" onclick="openTab(event, 'labios-temario')">Temario</button>
+                                            </div>
+                                            
+                                            <div id="labios-general" class="mini-tab-content active">
+                                                <p>Aprende las técnicas Acuarela Lips y Full Lips. Domina el implante correcto de pigmento en la mucosa labial sin dolor e inflamación mínima.</p>
+                                            </div>
+
+                                            <div id="labios-dirigido" class="mini-tab-content">
+                                                <p>Dirigido a dermopigmentadores con experiencia previa que buscan especializarse en el área labial y mejorar resultados cicatrizados.</p>
+                                            </div>
+
+                                            <div id="labios-temario" class="mini-tab-content">
+                                                <ul>
+                                                    <li>Anatomía de la piel labial e implante.</li>
+                                                    <li>Colorimetría y neutralización de labios.</li>
+                                                    <li>Selección de agujas y máquinas.</li>
+                                                    <li>Práctica en látex 3D y modelo real.</li>
+                                                    <li>Cuidados post-tratamiento.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right: Form -->
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo por e-mail.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Solicitar Info</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Course 3 -->
+                    <article class="course-card reveal delay-2">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Microblading" class="course-img" loading="lazy">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Microblading</h3>
+                            <p class="course-price">$450 USD</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            
+                            <!-- Detailed Info (Hidden by default) -->
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bxs-star'></i> Inscripción Abierta</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">$450 USD</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Inscribirme</a>
+                                    </div>
+                                </div>
+
+                                <div class="expanded-content-grid">
+                                    <!-- Left: Tabs -->
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'micro-general')">Información General</button>
+                                                <button class="mini-tab-btn" onclick="openTab(event, 'micro-dirigido')">Dirigido A</button>
+                                                <button class="mini-tab-btn" onclick="openTab(event, 'micro-temario')">Temario</button>
+                                            </div>
+                                            
+                                            <div id="micro-general" class="mini-tab-content active">
+                                                <p>Conviértete en Artista de Microblading. Desde el diseño inicial hasta el trazado de pelos con inductor manual para resultados ultra naturales.</p>
+                                            </div>
+
+                                            <div id="micro-dirigido" class="mini-tab-content">
+                                                <p>Ideal para iniciar un negocio en la industria PMU. No se requiere experiencia previa, se enseña paso a paso.</p>
+                                            </div>
+
+                                            <div id="micro-temario" class="mini-tab-content">
+                                                <ul>
+                                                    <li>Historia y bioseguridad del Microblading.</li>
+                                                    <li>Colorimetría avanzada y fototipos.</li>
+                                                    <li>Patrones de trazo y conexiones.</li>
+                                                    <li>Profundidad exacta, presión y estiramiento.</li>
+                                                    <li>Práctica supervisada en modelo en vivo.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right: Form -->
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo por e-mail.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Solicitar Info</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                     <!-- Course 4 -->
+                    <article class="course-card reveal">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Pestañas" class="course-img" loading="lazy">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Pestañas Pelo a Pelo</h3>
+                            <p class="course-price">$200 USD</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            
+                            <!-- Detailed Info (Hidden by default) -->
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bxs-star'></i> Inscripción Abierta</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">$200 USD</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Inscribirme</a>
+                                    </div>
+                                </div>
+
+                                <div class="expanded-content-grid">
+                                    <!-- Left: Tabs -->
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'pestanas-general')">Información General</button>
+                                                <button class="mini-tab-btn" onclick="openTab(event, 'pestanas-dirigido')">Dirigido A</button>
+                                                <button class="mini-tab-btn" onclick="openTab(event, 'pestanas-temario')">Temario</button>
+                                            </div>
+                                            
+                                            <div id="pestanas-general" class="mini-tab-content active">
+                                                <p>Aprende a aplicar extensiones 1 a 1 asegurando el aislamiento perfecto, la salud de la pestaña natural y una larga retención.</p>
+                                            </div>
+
+                                            <div id="pestanas-dirigido" class="mini-tab-content">
+                                                <p>Excelente para iniciarse en la estética de la mirada. No requiere experiencia previa, solo concentración y buen pulso.</p>
+                                            </div>
+
+                                            <div id="pestanas-temario" class="mini-tab-content">
+                                                <ul>
+                                                    <li>Ciclo de vida de la pestaña natural.</li>
+                                                    <li>Tipos de extensiones, grosores y curvaturas.</li>
+                                                    <li>Manejo de adhesivos y pinzas.</li>
+                                                    <li>Mapping y diseño de mirada.</li>
+                                                    <li>Mantenimiento y remoción segura.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right: Form -->
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo por e-mail.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Solicitar Info</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Course 5 -->
+                    <article class="course-card reveal delay-1">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Técnica Coreana" class="course-img" loading="lazy">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Técnica Coreana</h3>
+                            <p class="course-price">$250 USD</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            
+                            <!-- Detailed Info (Hidden by default) -->
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bxs-star'></i> Inscripción Abierta</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">$250 USD</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Inscribirme</a>
+                                    </div>
+                                </div>
+
+                                <div class="expanded-content-grid">
+                                    <!-- Left: Tabs -->
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'coreana-general')">Información General</button>
+                                                <button class="mini-tab-btn" onclick="openTab(event, 'coreana-dirigido')">Dirigido A</button>
+                                                <button class="mini-tab-btn" onclick="openTab(event, 'coreana-temario')">Temario</button>
+                                            </div>
+                                            
+                                            <div id="coreana-general" class="mini-tab-content active">
+                                                <p>Descubre la innovación mundial en Lifting de Pestañas. Nutre mientras curva, logrando un efecto "Pétalo" voluminoso que no reseca.</p>
+                                            </div>
+
+                                            <div id="coreana-dirigido" class="mini-tab-content">
+                                                <p>Ideal para profesionales que ya realizan lifting tradicional y buscan incorporar un servicio premium y exclusivo.</p>
+                                            </div>
+
+                                            <div id="coreana-temario" class="mini-tab-content">
+                                                <ul>
+                                                    <li>Diferencias químicas con técnica tradicional.</li>
+                                                    <li>Diseño de mirada avanzado y bigudíes.</li>
+                                                    <li>Protocolo paso a paso "Efecto Pétalos".</li>
+                                                    <li>Nutrición K-Beauty y elixires.</li>
+                                                    <li>Tintura y prevención de sobreprocesamiento.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right: Form -->
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo por e-mail.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Solicitar Info</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Course 6 -->
+                    <article class="course-card reveal delay-2">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Estilismo de Cejas" class="course-img" loading="lazy">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Estilismo de Cejas</h3>
+                            <p class="course-price">$180 USD</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            
+                            <!-- Detailed Info (Hidden by default) -->
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bxs-star'></i> Inscripción Abierta</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">$180 USD</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Inscribirme</a>
+                                    </div>
+                                </div>
+
+                                <div class="expanded-content-grid">
+                                    <!-- Left: Tabs -->
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'estilismo-general')">Información General</button>
+                                                <button class="mini-tab-btn" onclick="openTab(event, 'estilismo-dirigido')">Dirigido A</button>
+                                                <button class="mini-tab-btn" onclick="openTab(event, 'estilismo-temario')">Temario</button>
+                                            </div>
+                                            
+                                            <div id="estilismo-general" class="mini-tab-content active">
+                                                <p>El laminado (Brow Lamination) y la aplicación de tintes híbridos logran cejas de aspecto orgánico, pobladas y perfectamente definidas.</p>
+                                            </div>
+
+                                            <div id="estilismo-dirigido" class="mini-tab-content">
+                                                <p>Perfecto para quienes dominan el diseño básico y quieren añadir tratamientos temporales de alto impacto para mejorar el volumen.</p>
+                                            </div>
+
+                                            <div id="estilismo-temario" class="mini-tab-content">
+                                                <ul>
+                                                    <li>Química del laminado de cejas.</li>
+                                                    <li>Técnica de alisado y direccionalidad.</li>
+                                                    <li>Colorimetría aplicada a tintes y Henna.</li>
+                                                    <li>Botox y nutrición profunda post-química.</li>
+                                                    <li>Contraindicaciones y resolución de problemas.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right: Form -->
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo por e-mail.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Solicitar Info</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <h2>PAULA CANTARINO</h2>
+                <p>Academia de Belleza</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Redes Sociales</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Instagram" class="social-ig"><i class='bx bxl-instagram'></i></a>
+                        <a href="#" aria-label="Facebook" class="social-fb"><i class='bx bxl-facebook-circle'></i></a>
+                        <a href="#" aria-label="TikTok" class="social-tt"><i class='bx bxl-tiktok'></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <div class="footer-legal-links">
+                <a href="politica-privacidad.html">Política de Privacidad</a>
+                <a href="terminos-condiciones.html">Términos y Condiciones</a>
+            </div>
+            <p>&copy; 2026 Academia Paula Cantarino. Todos los derechos reservados. Desarrollada por Kairos.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/5493512560617" class="whatsapp-float" aria-label="Contactar por WhatsApp" target="_blank" rel="noopener noreferrer">
+        <i class='bx bxl-whatsapp'></i>
+    </a>
+
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paula Cantarino | El arte de la micropigmentación elevado al máximo nivel</title>
+    <meta name="description" content="Paula Cantarino es la academia líder en formación profesional de Microblading y Estética High-End.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Boxicons for elegant icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="assets/images/logo-paula.png" alt="Paula Cantarino" class="nav-logo-img"></a>
+            <nav class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="cursos.html">Cursos</a>
+                <a href="sobre-paula.html">Sobre Paula</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+            <div class="nav-actions">
+                <!-- Dynamically updated by auth.js -->
+                <div id="auth-buttons" style="display: inline-block;">
+                    <a href="login.html" class="btn btn-outline" style="padding: 0.6rem 1.5rem; font-size: 0.75rem;">Login</a>
+                </div>
+                <a href="https://app3.doyturnos.com/paulacantarino/" class="btn btn-solid" style="padding: 0.6rem 1.5rem; font-size: 0.75rem;" target="_blank" rel="noopener noreferrer">Sacar Turno</a>
+                <button class="cart-btn" aria-label="Carrito de compras"><i class='bx bx-shopping-bag'></i></button>
+            </div>
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-toggle" aria-label="Abrir menú"><i class='bx bx-menu'></i></button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header" style="padding: 150px 0 50px; text-align: center; background: var(--color-white);">
+            <div class="container reveal">
+                <h1 style="font-size: 4rem;">SERVICIOS EXCLUSIVOS</h1>
+                <p style="color: var(--color-gray); margin-top: 1rem; text-transform: uppercase;">Estudio Paula Cantarino</p>
+            </div>
+        </section>
+
+        <!-- Services Menu -->
+        <section class="services-menu section-spacing bg-light" id="servicios">
+            <div class="container">
+                
+                <!-- Categoría: Cejas -->
+                <div class="service-category reveal">
+                    <h2 class="category-title">Cejas</h2>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/c5a880/ffffff?text=Cejas+Laminado" alt="Cejas Laminado" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Perfilado + Diseño + Laminado</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 45 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/c5a880/ffffff?text=Cejas+Perfilado" alt="Cejas Perfilado" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Perfilado + Diseño de Cejas</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 45 min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categoría: Pestañas -->
+                <div class="service-category reveal delay-1">
+                    <h2 class="category-title">Pestañas</h2>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/333333/ffffff?text=Lifting" alt="Lifting" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Lifting</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 60 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/333333/ffffff?text=Volumen\nTecnologico" alt="Volumen Tecnologico" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Volumen Tecnológico</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 90 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/333333/ffffff?text=Clasicas" alt="Clasicas" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Clásicas</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 90 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/333333/ffffff?text=Mega\nvolumen" alt="Megavolumen" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Megavolumen</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 90 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/333333/ffffff?text=Hollywood" alt="Hollywood" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Volumen HOLLYWOOD</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 120 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/333333/ffffff?text=Remocion" alt="Remocion" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Remoción</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 30 min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categoría: Faciales -->
+                <div class="service-category reveal delay-2">
+                    <h2 class="category-title">Faciales</h2>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/c5a880/ffffff?text=Cutis" alt="Limpieza de Cutis" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Limpieza de Cutis</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 60 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/c5a880/ffffff?text=Limpieza+\nExtraccion" alt="Limpieza + Extraccion" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Limpieza + Extracción</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 60 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/c5a880/ffffff?text=Dermapen" alt="Dermapen" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Dermapen</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 60 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/c5a880/ffffff?text=Peeling\nCoreano" alt="Peeling Coreano" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Peeling Marino Coreano</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 60 min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categoría: Labios -->
+                <div class="service-category reveal">
+                    <h2 class="category-title">Labios</h2>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/333333/ffffff?text=Hidragloss" alt="Hidragloss" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Hidragloss</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 45 min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categoría: Micropigmentación (1ra Sesión) -->
+                <div class="service-category reveal delay-1">
+                    <h2 class="category-title">Micropigmentación (1ra Sesión)</h2>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/c5a880/ffffff?text=Delineado\nOjos" alt="Delineado Ojos" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Delineado permanente de Ojos</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 60 min</span>
+                                    <span class="service-note"><i class='bx bx-info-circle'></i> Este servicio se realiza en 2 etapas obligatorias</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/c5a880/ffffff?text=Micro-\nblading" alt="Microblading" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Microblading Hiperrealista 3D</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 60 min</span>
+                                    <span class="service-note"><i class='bx bx-info-circle'></i> Este servicio se realiza en 2 etapas obligatorias</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/c5a880/ffffff?text=Micro\nLabios" alt="Micro Labios" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Micropigmentación de Labios</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 60 min</span>
+                                    <span class="service-note"><i class='bx bx-info-circle'></i> Este servicio se realiza en 2 etapas obligatorias</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/c5a880/ffffff?text=Powder\nBrows" alt="Powder Brows" class="service-img" loading="lazy">
+                                <div class="service-info">
+                                    <h4>Powder Brows Efecto Polvo (1 Sesión)</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 60 min</span>
+                                    <span class="service-note"><i class='bx bx-info-circle'></i> Este servicio se realiza en 2 etapas obligatorias</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categoría: Retoques y Segundas Sesiones -->
+                <div class="service-category reveal delay-2">
+                    <h2 class="category-title">Retoques y Segundas Sesiones</h2>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/f8f9fa/c5a880?text=Retoque\nColor" alt="Retoque Color" class="service-img" loading="lazy" style="border: 2px solid var(--color-gold);">
+                                <div class="service-info">
+                                    <h4>Retoque de Color</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 60 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/f8f9fa/c5a880?text=Retoque\nOjos" alt="Retoque Ojos" class="service-img" loading="lazy" style="border: 2px solid var(--color-gold);">
+                                <div class="service-info">
+                                    <h4>2da Sesión Delineado Permanente de Ojos</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 60 min</span>
+                                    <span class="service-note"><i class='bx bx-check-circle'></i> Etapa 2 de 2</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/f8f9fa/c5a880?text=Retoque\nMicro" alt="Retoque Micro" class="service-img" loading="lazy" style="border: 2px solid var(--color-gold);">
+                                <div class="service-info">
+                                    <h4>2da Sesión Microblading Hiperrealista 3D</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 60 min</span>
+                                    <span class="service-note"><i class='bx bx-check-circle'></i> Etapa 2 de 2</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/f8f9fa/c5a880?text=Retoque\nLabios" alt="Retoque Labios" class="service-img" loading="lazy" style="border: 2px solid var(--color-gold);">
+                                <div class="service-info">
+                                    <h4>2da Sesión Micropigmentación de Labios</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 60 min</span>
+                                    <span class="service-note"><i class='bx bx-check-circle'></i> Etapa 2 de 2</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-left">
+                                <img src="https://placehold.co/200x200/f8f9fa/c5a880?text=Retoque\nPowder.B" alt="Retoque Powder Brows" class="service-img" loading="lazy" style="border: 2px solid var(--color-gold);">
+                                <div class="service-info">
+                                    <h4>Powder Brows Efecto Polvo (2da Sesión)</h4>
+                                    <span class="service-time"><i class='bx bx-time-five'></i> 60 min</span>
+                                    <span class="service-note"><i class='bx bx-check-circle'></i> Etapa 2 de 2</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center" style="margin-top: 2rem; margin-bottom: 4rem;">
+                    <a href="https://app3.doyturnos.com/paulacantarino/" class="btn btn-solid" target="_blank" rel="noopener noreferrer" style="padding: 1rem 3rem; font-size: 1.2rem;">Reservar Turno</a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <h2>PAULA CANTARINO</h2>
+                <p>Academia de Belleza</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Redes Sociales</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Instagram" class="social-ig"><i class='bx bxl-instagram'></i></a>
+                        <a href="#" aria-label="Facebook" class="social-fb"><i class='bx bxl-facebook-circle'></i></a>
+                        <a href="#" aria-label="TikTok" class="social-tt"><i class='bx bxl-tiktok'></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <div class="footer-legal-links">
+                <a href="politica-privacidad.html">Política de Privacidad</a>
+                <a href="terminos-condiciones.html">Términos y Condiciones</a>
+            </div>
+            <p>&copy; 2026 Academia Paula Cantarino. Todos los derechos reservados. Desarrollada por Kairos.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/5493512560617" class="whatsapp-float" aria-label="Contactar por WhatsApp" target="_blank" rel="noopener noreferrer">
+        <i class='bx bxl-whatsapp'></i>
+    </a>
+
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
+
+

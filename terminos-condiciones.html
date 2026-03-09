@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos y Condiciones | Paula Cantarino</title>
+    <meta name="description"
+        content="Términos y Condiciones de uso de la Academia Paula Cantarino.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Boxicons for elegant icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        .legal-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .legal-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .legal-content .last-updated {
+            text-align: center;
+            color: var(--color-gray);
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+        .legal-content h2 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .legal-content p {
+            margin-bottom: 1.5rem;
+            color: var(--color-dark-gray);
+        }
+        .back-btn-container {
+            text-align: center;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><img src="assets/images/logo-paula.png" alt="Paula Cantarino"
+                    class="nav-logo-img"></a>
+            <nav class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="cursos.html">Cursos</a>
+                <a href="sobre-paula.html">Sobre Paula</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+            <div class="nav-actions">
+                <!-- Dynamically updated by auth.js -->
+                <div id="auth-buttons" style="display: inline-block;">
+                    <a href="login.html" class="btn btn-outline" style="padding: 0.6rem 1.5rem; font-size: 0.75rem;">Login</a>
+                </div>
+                <a href="https://app3.doyturnos.com/paulacantarino/" class="btn btn-solid" style="padding: 0.6rem 1.5rem; font-size: 0.75rem;" target="_blank" rel="noopener noreferrer">Sacar Turno</a>
+                <button class="cart-btn" aria-label="Carrito de compras"><i class='bx bx-shopping-bag'></i></button>
+            </div>
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-toggle" aria-label="Abrir menú"><i class='bx bx-menu'></i></button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header section-spacing bg-light">
+            <div class="container text-center reveal">
+                <h1>Legal</h1>
+                <p>Nuestras normas de comunidad y aprendizaje</p>
+            </div>
+        </section>
+
+        <section class="section-spacing container">
+            <div class="legal-content reveal delay-1">
+                <h1>Términos y Condiciones</h1>
+                <p class="last-updated">Última actualización: Enero 2026</p>
+
+                <p>Bienvenido al sitio web de <strong>Academia Paula Cantarino</strong>. Al acceder y utilizar este sitio para información o inscripción a nuestros programas, usted acepta cumplir con los siguientes términos y condiciones.</p>
+
+                <h2>1. Uso del Sitio</h2>
+                <p>El contenido de este sitio web es para información general sobre nuestros cursos, certificaciones y servicios de estética facial. Está sujeto a cambios sin previo aviso.</p>
+
+                <h2>2. Propiedad Intelectual</h2>
+                <p>Todo el contenido, incluyendo logotipos, imágenes, textos, diseños de clases y material educativo, es propiedad de Academia Paula Cantarino o tiene licencia para su uso. Está estrictamente prohibida su reproducción sin autorización.</p>
+
+                <h2>3. Limitación de Responsabilidad</h2>
+                <p>Si bien nos esforzamos por mantener la información actualizada y precisa (como fechas, precios y cupos), no garantizamos la exactitud completa de los detalles en todo momento, los cuales pueden variar y deberán ser confirmados al momento de la matriculación o reserva de cita.</p>
+
+                <h2>4. Jurisdicción</h2>
+                <p>Estos términos se rigen por las leyes vigentes en Córdoba, Argentina.</p>
+
+                <div class="back-btn-container">
+                    <a href="index.html" class="btn btn-outline">Volver a Inicio</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <h2>PAULA CANTARINO</h2>
+                <p>Academia de Belleza </p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Redes Sociales</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Instagram" class="social-ig"><i class='bx bxl-instagram'></i></a>
+                        <a href="#" aria-label="Facebook" class="social-fb"><i class='bx bxl-facebook-circle'></i></a>
+                        <a href="#" aria-label="TikTok" class="social-tt"><i class='bx bxl-tiktok'></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <div class="footer-legal-links">
+                <a href="politica-privacidad.html">Política de Privacidad</a>
+                <a href="terminos-condiciones.html">Términos y Condiciones</a>
+            </div>
+            <p>&copy; 2026 Academia Paula Cantarino. Todos los derechos reservados. Desarrollada por Kairos.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/5493512560617" class="whatsapp-float" aria-label="Contactar por WhatsApp" target="_blank"
+        rel="noopener noreferrer">
+        <i class='bx bxl-whatsapp'></i>
+    </a>
+
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+    <script src="auth.js"></script>
+</body>
+
+</html>
