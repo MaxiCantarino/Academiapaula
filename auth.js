@@ -11,6 +11,8 @@ const supabaseKey = 'sb_publishable_sMfbOOvidLUB8gGcdCUtVw_ijphwWzm'; // Reempla
 let supabaseClient;
 try {
     supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+    // Export globally for other scripts to use
+    window.supabaseClient = supabaseClient;
 } catch (error) {
     console.error("No se pudo cargar Supabase. Es posible que un bloqueador de anuncios lo impidiera o falte internet.", error);
 }
