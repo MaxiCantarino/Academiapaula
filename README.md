@@ -11,7 +11,7 @@ Proyecto web para la promoción y dictado de cursos, servicios estéticos y port
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone <URL_DEL_REPOSITORIO>
+   git clone 
    cd Academiapaula
    ```
 

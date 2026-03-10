@@ -55,12 +55,22 @@
         <!-- Courses Section -->
         <section class="courses section-spacing" id="cursos">
             <div class="container">
-                <div class="courses-grid" style="margin-top: 0;">
+                <!-- Filter Bar -->
+                <div class="course-filters">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="cejas">Cejas</button>
+                    <button class="filter-btn" data-filter="micropigmentacion">Micropigmentación</button>
+                    <button class="filter-btn" data-filter="pestanas">Pestañas</button>
+                    <button class="filter-btn" data-filter="diseno-cejas">Diseño de cejas</button>
+                </div>
+
+                <div class="courses-grid" style="margin-top: 3rem;">
                     
                     <!-- Course 1 -->
-                    <article class="course-card reveal">
+                    <article class="course-card reveal" data-category="diseno-cejas">
                         <div class="card-image-wrapper">
                             <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Diseño de Cejas" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
                             <div class="card-overlay"></div>
                         </div>
                         <div class="card-content">
@@ -132,9 +142,10 @@
                     </article>
 
                     <!-- Course 2 -->
-                    <article class="course-card reveal delay-1">
+                    <article class="course-card reveal delay-1" data-category="micropigmentacion">
                         <div class="card-image-wrapper">
                             <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Labios" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
                             <div class="card-overlay"></div>
                         </div>
                         <div class="card-content">
@@ -206,9 +217,10 @@
                     </article>
 
                     <!-- Course 3 -->
-                    <article class="course-card reveal delay-2">
+                    <article class="course-card reveal delay-2" data-category="micropigmentacion">
                         <div class="card-image-wrapper">
                             <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Microblading" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
                             <div class="card-overlay"></div>
                         </div>
                         <div class="card-content">
@@ -280,9 +292,10 @@
                     </article>
 
                      <!-- Course 4 -->
-                    <article class="course-card reveal">
+                    <article class="course-card reveal" data-category="pestanas">
                         <div class="card-image-wrapper">
                             <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Pestañas" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
                             <div class="card-overlay"></div>
                         </div>
                         <div class="card-content">
@@ -354,9 +367,10 @@
                     </article>
 
                     <!-- Course 5 -->
-                    <article class="course-card reveal delay-1">
+                    <article class="course-card reveal delay-1" data-category="pestanas">
                         <div class="card-image-wrapper">
                             <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Técnica Coreana" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
                             <div class="card-overlay"></div>
                         </div>
                         <div class="card-content">
@@ -428,9 +442,10 @@
                     </article>
 
                     <!-- Course 6 -->
-                    <article class="course-card reveal delay-2">
+                    <article class="course-card reveal delay-2" data-category="cejas">
                         <div class="card-image-wrapper">
                             <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Estilismo de Cejas" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
                             <div class="card-overlay"></div>
                         </div>
                         <div class="card-content">
@@ -501,6 +516,569 @@
                         </div>
                     </article>
 
+                    <!-- Course Placeholder -->
+                    <article class="course-card reveal delay-2">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Próximamente" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Nueva Formación</h3>
+                            <p class="course-price">Próximamente</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bx-time'></i> Muy pronto</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">A Confirmar</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Consultar</a>
+                                    </div>
+                                </div>
+                                <div class="expanded-content-grid">
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'new-general')">Información</button>
+                                            </div>
+                                            <div id="new-general" class="mini-tab-content active">
+                                                <p>Estamos preparando todos los detalles de esta nueva formación. Mantente atenta a nuestras redes sociales para el lanzamiento oficial!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo apenas esté disponible.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Lista de Espera</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Course Placeholder -->
+                    <article class="course-card reveal delay-2">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Próximamente" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Nueva Formación</h3>
+                            <p class="course-price">Próximamente</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bx-time'></i> Muy pronto</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">A Confirmar</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Consultar</a>
+                                    </div>
+                                </div>
+                                <div class="expanded-content-grid">
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'new-general')">Información</button>
+                                            </div>
+                                            <div id="new-general" class="mini-tab-content active">
+                                                <p>Estamos preparando todos los detalles de esta nueva formación. Mantente atenta a nuestras redes sociales para el lanzamiento oficial!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo apenas esté disponible.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Lista de Espera</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Course Placeholder -->
+                    <article class="course-card reveal delay-2">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Próximamente" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Nueva Formación</h3>
+                            <p class="course-price">Próximamente</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bx-time'></i> Muy pronto</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">A Confirmar</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Consultar</a>
+                                    </div>
+                                </div>
+                                <div class="expanded-content-grid">
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'new-general')">Información</button>
+                                            </div>
+                                            <div id="new-general" class="mini-tab-content active">
+                                                <p>Estamos preparando todos los detalles de esta nueva formación. Mantente atenta a nuestras redes sociales para el lanzamiento oficial!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo apenas esté disponible.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Lista de Espera</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Course Placeholder -->
+                    <article class="course-card reveal delay-2">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Próximamente" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Nueva Formación</h3>
+                            <p class="course-price">Próximamente</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bx-time'></i> Muy pronto</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">A Confirmar</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Consultar</a>
+                                    </div>
+                                </div>
+                                <div class="expanded-content-grid">
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'new-general')">Información</button>
+                                            </div>
+                                            <div id="new-general" class="mini-tab-content active">
+                                                <p>Estamos preparando todos los detalles de esta nueva formación. Mantente atenta a nuestras redes sociales para el lanzamiento oficial!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo apenas esté disponible.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Lista de Espera</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Course Placeholder -->
+                    <article class="course-card reveal delay-2">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Próximamente" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Nueva Formación</h3>
+                            <p class="course-price">Próximamente</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bx-time'></i> Muy pronto</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">A Confirmar</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Consultar</a>
+                                    </div>
+                                </div>
+                                <div class="expanded-content-grid">
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'new-general')">Información</button>
+                                            </div>
+                                            <div id="new-general" class="mini-tab-content active">
+                                                <p>Estamos preparando todos los detalles de esta nueva formación. Mantente atenta a nuestras redes sociales para el lanzamiento oficial!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo apenas esté disponible.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Lista de Espera</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Course Placeholder -->
+                    <article class="course-card reveal delay-2">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Próximamente" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Nueva Formación</h3>
+                            <p class="course-price">Próximamente</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bx-time'></i> Muy pronto</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">A Confirmar</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Consultar</a>
+                                    </div>
+                                </div>
+                                <div class="expanded-content-grid">
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'new-general')">Información</button>
+                                            </div>
+                                            <div id="new-general" class="mini-tab-content active">
+                                                <p>Estamos preparando todos los detalles de esta nueva formación. Mantente atenta a nuestras redes sociales para el lanzamiento oficial!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo apenas esté disponible.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Lista de Espera</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Course Placeholder -->
+                    <article class="course-card reveal delay-2">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Próximamente" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Nueva Formación</h3>
+                            <p class="course-price">Próximamente</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bx-time'></i> Muy pronto</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">A Confirmar</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Consultar</a>
+                                    </div>
+                                </div>
+                                <div class="expanded-content-grid">
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'new-general')">Información</button>
+                                            </div>
+                                            <div id="new-general" class="mini-tab-content active">
+                                                <p>Estamos preparando todos los detalles de esta nueva formación. Mantente atenta a nuestras redes sociales para el lanzamiento oficial!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo apenas esté disponible.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Lista de Espera</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Course Placeholder -->
+                    <article class="course-card reveal delay-2">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Próximamente" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Nueva Formación</h3>
+                            <p class="course-price">Próximamente</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bx-time'></i> Muy pronto</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">A Confirmar</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Consultar</a>
+                                    </div>
+                                </div>
+                                <div class="expanded-content-grid">
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'new-general')">Información</button>
+                                            </div>
+                                            <div id="new-general" class="mini-tab-content active">
+                                                <p>Estamos preparando todos los detalles de esta nueva formación. Mantente atenta a nuestras redes sociales para el lanzamiento oficial!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo apenas esté disponible.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Lista de Espera</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Course Placeholder -->
+                    <article class="course-card reveal delay-2">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Próximamente" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Nueva Formación</h3>
+                            <p class="course-price">Próximamente</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bx-time'></i> Muy pronto</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">A Confirmar</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Consultar</a>
+                                    </div>
+                                </div>
+                                <div class="expanded-content-grid">
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'new-general')">Información</button>
+                                            </div>
+                                            <div id="new-general" class="mini-tab-content active">
+                                                <p>Estamos preparando todos los detalles de esta nueva formación. Mantente atenta a nuestras redes sociales para el lanzamiento oficial!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo apenas esté disponible.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Lista de Espera</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Course Placeholder -->
+                    <article class="course-card reveal delay-2">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Próximamente" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Nueva Formación</h3>
+                            <p class="course-price">Próximamente</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bx-time'></i> Muy pronto</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">A Confirmar</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Consultar</a>
+                                    </div>
+                                </div>
+                                <div class="expanded-content-grid">
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'new-general')">Información</button>
+                                            </div>
+                                            <div id="new-general" class="mini-tab-content active">
+                                                <p>Estamos preparando todos los detalles de esta nueva formación. Mantente atenta a nuestras redes sociales para el lanzamiento oficial!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo apenas esté disponible.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Lista de Espera</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Course Placeholder -->
+                    <article class="course-card reveal delay-2">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Próximamente" class="course-img" loading="lazy">
+                            <img src="assets/images/logo-paula.png" alt="Watermark" class="watermark-logo">
+                            <div class="card-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Nueva Formación</h3>
+                            <p class="course-price">Próximamente</p>
+                            <a href="#" class="btn btn-outline course-btn" onclick="toggleCardInfo(event)">Más Info</a>
+                            <div class="card-detailed-info">
+                                <button class="close-btn" aria-label="Cerrar" onclick="closeCardInfo(event)"><i class='bx bx-x'></i></button>
+                                <div class="mini-banner">
+                                    <div class="info">
+                                        <div class="status"><i class='bx bx-time'></i> Muy pronto</div>
+                                        <div class="price"><h4>Reserva tu lugar</h4></div>
+                                    </div>
+                                    <div class="cta-area" style="text-align: right;">
+                                        <div class="amount" style="margin-bottom: 0.5rem;">A Confirmar</div>
+                                        <a href="https://app3.doyturnos.com/paulacantarino/" class="btn-gold" target="_blank">Consultar</a>
+                                    </div>
+                                </div>
+                                <div class="expanded-content-grid">
+                                    <div class="course-mini-tabs-col">
+                                        <div class="mini-tabs">
+                                            <div class="mini-tab-headers">
+                                                <button class="mini-tab-btn active" onclick="openTab(event, 'new-general')">Información</button>
+                                            </div>
+                                            <div id="new-general" class="mini-tab-content active">
+                                                <p>Estamos preparando todos los detalles de esta nueva formación. Mantente atenta a nuestras redes sociales para el lanzamiento oficial!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="course-mini-form-col">
+                                        <div class="mini-form-container">
+                                            <h4>Quiero más info</h4>
+                                            <p>Recibí el temario completo apenas esté disponible.</p>
+                                            <form action="#">
+                                                <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                                                <input type="email" class="form-control" placeholder="E-mail" required>
+                                                <input type="tel" class="form-control" placeholder="Teléfono" required>
+                                                <button type="submit" class="btn-gold" style="width: 100%;">Lista de Espera</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+
+
                 </div>
             </div>
         </section>
@@ -544,5 +1122,6 @@
     <script src="auth.js"></script>
 </body>
 </html>
+
 
 
