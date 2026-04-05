@@ -89,6 +89,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const name = nameInput?.value || '';
 
             try {
+                // UI Loading Feedback
+                if (formMessage) {
+                    formMessage.style.color = '#a48650'; // Gold color
+                    formMessage.innerText = 'Creando cuenta, por favor espera...';
+                }
+
                 // Supabase SignUp
                 const { data, error } = await supabaseClient.auth.signUp({
                     email: email,
@@ -151,6 +157,58 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (formMessage) {
                     formMessage.style.color = 'red';
                     formMessage.innerText = 'Credenciales incorrectas o error al ingresar.';
+                }
+            }
+        });
+    }
+
+    // --- Restablecer Contraseña (Forgot Password) ---
+    const forgotPasswordLink = document.getElementById('forgot-password-link');
+    if (forgotPasswordLink) {
+        forgotPasswordLink.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById('email');
+            const email = emailInput?.value;
+            const formMessage = document.getElementById('login-message');
+
+            if (!email) {
+                if (formMessage) {
+                    formMessage.style.color = '#a48650'; // Gold color
+                    formMessage.innerText = '⚠️ Por favor, ingresa tu correo en la casilla de arriba antes de solicitar una nueva contraseña.';
+                }
+                return;
+            }
+
+            if (formMessage) {
+                formMessage.style.color = 'var(--color-gray)';
+                formMessage.innerText = 'Enviando solicitud de restablecimiento...';
+            }
+
+            try {
+                // Build robust redirect URL relative to current location
+                let redirectUrl = window.location.origin;
+                if (window.location.pathname.includes('/login.html')) {
+                    redirectUrl = window.location.href.replace('login.html', 'perfil.html');
+                } else {
+                    redirectUrl += '/perfil.html';
+                }
+
+                const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+                    redirectTo: redirectUrl
+                });
+
+                if (error) throw error;
+
+                if (formMessage) {
+                    formMessage.style.color = '#34C759'; // Green success
+                    formMessage.innerText = '¡Listo! Te hemos enviado un correo con el enlace para restablecer tu contraseña. (Revisa en Spam por si acaso).';
+                }
+
+            } catch (error) {
+                console.error("Error al restablecer contraseña:", error.message);
+                if (formMessage) {
+                    formMessage.style.color = '#FF3B30'; // Red error
+                    formMessage.innerText = 'Hubo un problema. Verifica que el correo ingresado sea válido.';
                 }
             }
         });
