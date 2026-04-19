@@ -1,4 +1,4 @@
-﻿/* 
+/* 
    ========================================
 /*
    ========================================
@@ -72,7 +72,7 @@ img {
 }
 
 .section-spacing {
-    padding: 8rem 0;
+    padding: 5rem 0;
 }
 
 .bg-light {
@@ -263,7 +263,7 @@ img {
    ========================================
 */
 .hero {
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -935,7 +935,23 @@ img {
     }
     
     .nav-actions {
-        display: none; /* Hide buttons on mobile to save space, or optionally move them to .nav-links */
+        display: none; /* Hidden if outside */
+    }
+    
+    .nav-links .nav-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+    }
+    
+    .nav-links .nav-actions .btn {
+        width: 100%;
+        text-align: center;
     }
     
     .mobile-toggle {
@@ -1103,6 +1119,12 @@ img {
     flex-direction: column;
 }
 
+@media (max-width: 600px) {
+    .card-content {
+        padding: 1.2rem;
+    }
+}
+
 .card-content h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
@@ -1199,6 +1221,23 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+@media (max-width: 600px) {
+    .mini-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.2rem;
+        padding: 1.2rem;
+    }
+    .mini-banner .cta-area {
+        text-align: center !important;
+        width: 100%;
+    }
+    .mini-banner .cta-area .btn-gold {
+        display: block;
+        width: 100%;
+    }
 }
 
 .mini-banner .status {

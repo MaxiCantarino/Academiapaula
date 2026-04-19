@@ -325,7 +325,7 @@ window.updateNavbarState = async function() {
         authButtonsContainer.innerHTML = `<a href="alumnos.html" class="btn btn-outline" style="padding: 0.6rem 1.5rem; font-size: 0.75rem; border-color: #a48650; color: #a48650;">Portal Alumno</a>`;
     } else {
         // Usuario visitante, mostrar botón de Login
-        authButtonsContainer.innerHTML = `<a href="login.html" class="btn btn-outline" style="padding: 0.6rem 1.5rem; font-size: 0.75rem;">Login</a>`;
+        authButtonsContainer.innerHTML = `<a href="login.html" class="btn btn-outline" style="padding: 0.6rem 1.5rem; font-size: 0.75rem;">Portal Alumnos</a>`;
     }
 };
 
