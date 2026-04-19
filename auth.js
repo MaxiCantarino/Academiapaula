@@ -347,3 +347,57 @@ window.checkAuth = async function(redirectIfNotAuthenticated = true) {
     
     return session;
 };
+
+// --- DATA FETCHING (Fase 2) ---
+
+// Obtener los cursos comprados por el usuario activo
+window.fetchEnrolledCourses = async function() {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (!session) return [];
+
+    const { data: userCourses, error } = await window.supabaseClient
+        .from('user_courses')
+        .select(`
+            course_id,
+            courses (
+                id,
+                title,
+                cover_image_url
+            )
+        `)
+        .eq('user_id', session.user.id);
+        
+    if (error) {
+        console.error("Error al obtener cursos del alumno:", error);
+        return [];
+    }
+    
+    // Mapear los resultados para unificar el objeto a un formato más fácil
+    return userCourses.map(uc => uc.courses);
+};
+
+// Obtener el temario (módulos y videos) de un curso en particular
+window.fetchCourseSyllabus = async function(courseId) {
+    const { data: lessons, error } = await window.supabaseClient
+        .from('lessons')
+        .select('*')
+        .eq('course_id', courseId)
+        .order('order_number', { ascending: true });
+        
+    if (error) {
+        console.error("Error al obtener el temario:", error);
+        return [];
+    }
+    return lessons;
+};
+
+// Generador de URls públicas de imágenes de Supabase (bucket Cursos)
+window.getSupabaseImageUrl = function(imageName) {
+    if (!imageName) return 'assets/images/placeholder.jpg';
+    // Si la imagen ya es una URL completa o una ruta local a assets, devolverla como está
+    if (imageName.startsWith('http') || imageName.startsWith('assets/')) return imageName;
+    
+    const bucketName = 'Cursos';
+    const { data } = window.supabaseClient.storage.from(bucketName).getPublicUrl(imageName);
+    return data.publicUrl;
+};

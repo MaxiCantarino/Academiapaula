@@ -80,60 +80,23 @@
         <aside class="syllabus-sidebar">
             <div class="syllabus-header">
                 <a href="alumnos.html" class="back-btn"><i class='bx bx-chevron-left'></i> Volver al Panel</a>
-                <h2 style="margin-top: 1rem;">Diseño de Cejas y Arquitectura</h2>
+                <h2 id="course-title-display" style="margin-top: 1rem;">Cargando Curso...</h2>
                 <div class="progress-bar" style="height: 4px; margin-top: 0.5rem;">
-                    <div class="progress-fill" style="width: 45%;"></div>
+                    <div class="progress-fill" style="width: 0%;" id="course-progress"></div>
                 </div>
             </div>
             
-            <div class="syllabus-content">
-                
-                <!-- Module 1 -->
-                <div class="module">
-                    <div class="module-header" onclick="toggleModule(this)">
-                        <span>Módulo 1: Fundamentos</span>
-                        <i class='bx bx-chevron-up'></i>
-                    </div>
-                    <ul class="module-list">
-                        <li class="lesson-item completed" onclick="loadVideo('dQw4w9WgXcQ', 'Bienvenida y Materiales', 'Conoce las herramientas que usaremos durante el curso.')">
-                            <i class='bx bxs-check-circle'></i>
-                            <span>1. Bienvenida y Materiales</span>
-                        </li>
-                        <li class="lesson-item active" onclick="loadVideo('tgbNymZ7vqY', 'Morfología del Rostro', 'Aprende a analizar los diferentes tipos de rostros para un diseño perfecto.')">
-                            <i class='bx bx-play-circle'></i>
-                            <span>2. Morfología del Rostro</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Module 2 -->
-                <div class="module">
-                    <div class="module-header" onclick="toggleModule(this)">
-                        <span>Módulo 2: Arquitectura y Diseño</span>
-                        <i class='bx bx-chevron-down'></i>
-                    </div>
-                    <ul class="module-list collapsed">
-                        <li class="lesson-item" onclick="loadVideo('anotherId', 'Uso del Hilo y Calibrador', 'Técnicas de medición precisas.')">
-                            <i class='bx bx-lock-alt'></i>
-                            <span>1. Uso del Hilo y Calibrador</span>
-                        </li>
-                        <li class="lesson-item" onclick="loadLiveClass('Práctica en Vivo con Modelo', 'Jueves 15, 18:30 hrs', 'https://zoom.us/j/123456789')">
-                            <i class='bx bx-video-recording'></i>
-                            <span>2. Clase en Vivo: Demostración</span>
-                        </li>
-                    </ul>
-                </div>
-
+            <div class="syllabus-content" id="dynamic-syllabus-content">
+                <p style="padding: 2rem; color: var(--color-gray); text-align: center;"><i class='bx bx-loader-alt bx-spin'></i> Cargando temario...</p>
             </div>
         </aside>
 
         <!-- Main Video Area -->
         <main class="classroom-main">
             
-            <!-- YouTube Video Container -->
+            <!-- Video Container -->
             <div class="video-container" id="video-player-container">
-                <!-- We use YouTube No-Cookie for better privacy, replace ID dynamically -->
-                <iframe id="youtube-player" src="https://www.youtube-nocookie.com/embed/tgbNymZ7vqY?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe id="video-player" src="" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" frameborder="0" allowfullscreen></iframe>
             </div>
 
             <!-- Live Class Box (Hidden by default, shown via JS) -->
@@ -161,7 +124,7 @@
 
     <script>
         // Simple JS for toggling modules
-        function toggleModule(header) {
+        window.toggleModule = function(header) {
             const list = header.nextElementSibling;
             const icon = header.querySelector('i');
             list.classList.toggle('collapsed');
@@ -171,48 +134,29 @@
             } else {
                 icon.classList.replace('bx-chevron-down', 'bx-chevron-up');
             }
-        }
+        };
 
         // Feature to dynamically change video
-        function loadVideo(youtubeId, title, desc) {
+        window.loadVideo = function(videoUrl, title, desc, element) {
             // Update UI Active State
             document.querySelectorAll('.lesson-item').forEach(item => item.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            if(element) element.classList.add('active');
 
             // Switch layout to Video
             document.getElementById('video-player-container').style.display = 'block';
             document.getElementById('live-class-container').style.display = 'none';
 
             // Update iframe
-            const iframe = document.getElementById('youtube-player');
-            iframe.src = `https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0&modestbranding=1&autoplay=1`;
+            const iframe = document.getElementById('video-player');
+            // Support both Vimeo and YouTube if needed
+            iframe.src = videoUrl;
 
             // Update Texts
             document.getElementById('lesson-title-display').textContent = title;
-            document.getElementById('lesson-desc-display').textContent = desc;
+            document.getElementById('lesson-desc-display').textContent = desc || "Visualiza la lección prestando atención a los detalles.";
             document.getElementById('resources-box').style.display = 'block';
-        }
+        };
 
-        // Feature to load Live Class info
-        function loadLiveClass(title, time, link) {
-             // Update UI Active State
-             document.querySelectorAll('.lesson-item').forEach(item => item.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-
-            // Switch layout to Live Class
-            document.getElementById('video-player-container').style.display = 'none';
-            document.getElementById('live-class-container').style.display = 'block';
-
-            // Update Info
-            document.getElementById('live-title').textContent = title;
-            document.getElementById('live-time').innerHTML = `<i class='bx bx-calendar'></i> ${time}`;
-            document.getElementById('live-link').href = link;
-            
-            // Update Content Texts
-            document.getElementById('lesson-title-display').textContent = title;
-            document.getElementById('lesson-desc-display').textContent = "Prepara tus herramientas y asegúrate de tener buena conexión a internet para esta clase en vivo.";
-            document.getElementById('resources-box').style.display = 'none';
-        }
     </script>
 
     <!-- Custom Auth JS -->
@@ -221,7 +165,88 @@
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
              // Verifica la sesión y redirige al login si no está autenticado
-             await checkAuth();
+             const session = await checkAuth();
+             if(!session) return;
+
+             // Obtener el ID del curso de la URL
+             const urlParams = new URLSearchParams(window.location.search);
+             const courseId = urlParams.get('id');
+
+             const syllabusContainer = document.getElementById('dynamic-syllabus-content');
+             const titleDisplay = document.getElementById('course-title-display');
+
+             if (!courseId) {
+                 titleDisplay.innerText = "Curso no encontrado";
+                 syllabusContainer.innerHTML = "<p style='padding: 2rem;'>Error: No se definió un curso para cargar.</p>";
+                 return;
+             }
+
+             // Cargar el nombre del curso (buscándolo entre los comprados)
+             const misCursos = await fetchEnrolledCourses();
+             const currentCourse = misCursos.find(c => c.id === courseId);
+             
+             if(currentCourse) {
+                 titleDisplay.innerText = currentCourse.title;
+             } else {
+                 titleDisplay.innerText = "Acceso Denegado";
+                 syllabusContainer.innerHTML = "<p style='padding: 2rem;'>No tienes acceso a este curso o no existe.</p>";
+                 return;
+             }
+
+             // Cargar Temario (Lecciones)
+             const lessons = await fetchCourseSyllabus(courseId);
+
+             if(lessons.length === 0) {
+                 syllabusContainer.innerHTML = "<p style='padding: 2rem; color: var(--color-gray); font-size: 0.9rem;'>Las lecciones de este curso están siendo preparadas y pronto estarán disponibles.</p>";
+                 document.getElementById('video-player').src = "";
+                 document.getElementById('lesson-title-display').innerText = "Próximamente";
+                 document.getElementById('lesson-desc-display').innerText = "Estamos editando y subiendo los videos. Te avisaremos cuando tu temario esté al 100%.";
+                 return;
+             }
+
+             // Renderizar Temario en HTML agrupando por módulo
+             let currentModule = "";
+             let htmlContent = "";
+             
+             lessons.forEach((lesson, index) => {
+                 // Si cambiamos de módulo, cerramos el anterior (si hay) y abrimos uno nuevo
+                 if(lesson.module_name !== currentModule) {
+                     if(currentModule !== "") {
+                         htmlContent += `</ul></div>`; // Cierra el módulo anterior
+                     }
+                     currentModule = lesson.module_name;
+                     htmlContent += `
+                     <div class="module">
+                        <div class="module-header" onclick="toggleModule(this)">
+                            <span>${lesson.module_name}</span>
+                            <i class='bx bx-chevron-up'></i>
+                        </div>
+                        <ul class="module-list">
+                     `;
+                 }
+
+                 // Añadir la lección
+                 const isFirst = index === 0;
+                 htmlContent += `
+                    <li class="lesson-item ${isFirst ? 'active' : ''}" onclick="loadVideo('${lesson.vimeo_embed_url}', '${lesson.title}', '', this)">
+                        <i class='bx bx-play-circle'></i>
+                        <span>${lesson.order_number}. ${lesson.title}</span>
+                    </li>
+                 `;
+             });
+
+             // Cerrar el último módulo abierto
+             if (htmlContent !== "") {
+                 htmlContent += `</ul></div>`;
+             }
+
+             syllabusContainer.innerHTML = htmlContent;
+
+             // Cargar automáticamente el primer video en el reproductor principal
+             if(lessons.length > 0) {
+                 loadVideo(lessons[0].vimeo_embed_url, lessons[0].title, "", null);
+             }
+
         });
     </script>
 </body>

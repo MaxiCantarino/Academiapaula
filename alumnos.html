@@ -62,42 +62,9 @@
                     <p>Continuá tu formación donde la dejaste.</p>
                 </div>
 
-                <div class="enrolled-courses-grid">
-                    
-                    <!-- Enrolled Course Card 1 -->
-                    <article class="enrolled-card">
-                        <div class="enrolled-img-box">
-                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Diseño de Cejas" loading="lazy">
-                        </div>
-                        <div class="enrolled-info">
-                            <h3>Diseño de Cejas y Arquitectura</h3>
-                            <div class="progress-container">
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 45%;"></div>
-                                </div>
-                                <span class="progress-text">45% Completado</span>
-                            </div>
-                            <div class="course-actions">
-                                <a href="curso-aula.html" class="btn btn-solid">Ir al Aula</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Enrolled Course Card 2 (Live Cohort Example) -->
-                    <article class="enrolled-card">
-                        <div class="enrolled-img-box">
-                            <img src="assets/images/macro_eyebrows_beauty_1772899496954.png" alt="Microblading" loading="lazy">
-                            <div class="live-badge">En Vivo</div>
-                        </div>
-                        <div class="enrolled-info">
-                            <h3>Máster en Microblading (Cohorte Mayo)</h3>
-                            <p class="next-class-info"><i class='bx bx-calendar'></i> Próxima clase: Jueves, 18:30 hrs</p>
-                            <div class="course-actions">
-                                <a href="curso-aula.html" class="btn btn-outline">Ir al Aula</a>
-                            </div>
-                        </div>
-                    </article>
-
+                <div class="enrolled-courses-grid" id="student-courses-grid">
+                    <!-- Loading state -->
+                    <p style="grid-column: 1 / -1; color: var(--color-gray);"><i class='bx bx-loader-alt bx-spin'></i> Cargando tus cursos...</p>
                 </div>
             </section>
 
@@ -115,6 +82,42 @@
                 const userName = session.user.user_metadata?.full_name || session.user.email;
                 const displayName = document.getElementById('user-display-name');
                 if(displayName) displayName.innerText = userName.split('@')[0];
+
+                // Cargar Cursos de Supabase (Fase 2)
+                const grid = document.getElementById('student-courses-grid');
+                if(grid) {
+                    const myCourses = await fetchEnrolledCourses();
+                    
+                    if (myCourses.length === 0) {
+                        grid.innerHTML = `
+                            <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 0; background-color: var(--color-white); border-radius: var(--radius-minimal); border: 1px dashed var(--color-light-gray);">
+                                <i class='bx bx-book-open' style="font-size: 3rem; color: var(--color-gray); margin-bottom: 1rem;"></i>
+                                <h3>Aún no tienes cursos</h3>
+                                <p style="color: var(--color-dark-gray); margin-bottom: 1.5rem;">Explora nuestra oferta educativa y comienza a aprender hoy mismo.</p>
+                                <a href="cursos.html" class="btn btn-solid">Ver Cursos</a>
+                            </div>
+                        `;
+                    } else {
+                        grid.innerHTML = '';
+                        myCourses.forEach(course => {
+                            const imgUrl = getSupabaseImageUrl(course.cover_image_url);
+                            
+                            grid.innerHTML += `
+                                <article class="enrolled-card">
+                                    <div class="enrolled-img-box">
+                                        <img src="${imgUrl}" alt="${course.title}" loading="lazy">
+                                    </div>
+                                    <div class="enrolled-info">
+                                        <h3>${course.title}</h3>
+                                        <div class="course-actions" style="margin-top: auto;">
+                                            <a href="curso-aula.html?id=${course.id}" class="btn btn-solid" style="width: 100%;">Ir al Aula</a>
+                                        </div>
+                                    </div>
+                                </article>
+                            `;
+                        });
+                    }
+                }
             }
         });
     </script>
