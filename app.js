@@ -48,6 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create a mobile menu container if it doesn't exist to handle the layout elegantly on click
     if(mobileToggle) {
         mobileToggle.addEventListener('click', () => {
+            // Move actions to inside links for mobile when menu is clicked (ensures it's there)
+            if (window.innerWidth <= 900 && navActions.parentNode !== navLinks) {
+                navLinks.appendChild(navActions);
+            }
+            
             const isMenuOpen = navLinks.classList.contains('active');
             
             if (isMenuOpen) {
